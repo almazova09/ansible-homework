@@ -1,0 +1,15 @@
+- name: Install php packages
+  ansible.builtin.dnf:
+    name: 
+      - dnf 
+      - wget 
+      - php-mysqlnd 
+      - httpd 
+      - php-fpm 
+      - php-mysqli 
+      - mariadb105-server 
+      - php-json 
+      - php 
+      - php-devel 
+      
+   

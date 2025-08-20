@@ -1,0 +1,30 @@
+- name: Download wordpress
+  ansible.builtin.get_url:
+    url: https://wordpress.org/latest.tar.gz
+    dest: /tmp/
+    
+- name: Unarchive wordPress
+  ansible.builtin.unarchive:
+    src: /tmp/latest.tar.gz
+    dest: /tmp
+    remote_src: yes
+
+- name: Move WordPress files to Httpd web root
+  ansible.builtin.copy:
+    src: /tmp/wordpress/
+    dest: /var/www/html/
+    remote_src: yes
+    owner: apache
+    group: apache
+    mode: '0755'
+
+- name: Delete index.html file
+  ansible.builtin.file:
+    path: /var/www/html/index.html
+    state: absent
+
+- name: Restart Httpd
+  ansible.builtin.service:
+    name: httpd
+    state: restarted
+
