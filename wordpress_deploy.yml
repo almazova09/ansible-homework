@@ -1,9 +1,9 @@
-- name: Download wordpress
+- name: Download WordPress
   ansible.builtin.get_url:
     url: https://wordpress.org/latest.tar.gz
     dest: /tmp/
     
-- name: Unarchive wordPress
+- name: Unarchive WordPress
   ansible.builtin.unarchive:
     src: /tmp/latest.tar.gz
     dest: /tmp
